@@ -8,6 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+@class BufferView;
+
+
+@interface BufferViewController : UIViewController
+
+
+@property (strong, nonatomic) BufferView *bufferView;
 
 @end
+

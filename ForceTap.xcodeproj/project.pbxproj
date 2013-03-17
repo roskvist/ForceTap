@@ -16,8 +16,12 @@
 		C0118FD816E3E9C800D8C438 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = C0118FD716E3E9C800D8C438 /* Default.png */; };
 		C0118FDA16E3E9C800D8C438 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C0118FD916E3E9C800D8C438 /* Default@2x.png */; };
 		C0118FDC16E3E9C800D8C438 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C0118FDB16E3E9C800D8C438 /* Default-568h@2x.png */; };
-		C0118FDF16E3E9C800D8C438 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0118FDE16E3E9C800D8C438 /* ViewController.m */; };
-		C0118FE216E3E9C800D8C438 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C0118FE016E3E9C800D8C438 /* ViewController.xib */; };
+		C0118FDF16E3E9C800D8C438 /* BufferViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0118FDE16E3E9C800D8C438 /* BufferViewController.m */; };
+		C0118FED16E3EDA400D8C438 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0118FEC16E3EDA400D8C438 /* AVFoundation.framework */; };
+		C0118FF116E4A32F00D8C438 /* BufferView.m in Sources */ = {isa = PBXBuildFile; fileRef = C0118FF016E4A32F00D8C438 /* BufferView.m */; };
+		C0118FF316E4B73600D8C438 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0118FF216E4B73600D8C438 /* CoreMedia.framework */; };
+		C0CB7B9616E8C366003AD931 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0CB7B9516E8C366003AD931 /* AudioToolbox.framework */; };
+		C0CB7BA216E98CBB003AD931 /* AU.m in Sources */ = {isa = PBXBuildFile; fileRef = C0CB7BA116E98CBB003AD931 /* AU.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,9 +38,15 @@
 		C0118FD716E3E9C800D8C438 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		C0118FD916E3E9C800D8C438 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		C0118FDB16E3E9C800D8C438 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		C0118FDD16E3E9C800D8C438 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		C0118FDE16E3E9C800D8C438 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		C0118FE116E3E9C800D8C438 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController.xib; sourceTree = "<group>"; };
+		C0118FDD16E3E9C800D8C438 /* BufferViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BufferViewController.h; sourceTree = "<group>"; };
+		C0118FDE16E3E9C800D8C438 /* BufferViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BufferViewController.m; sourceTree = "<group>"; };
+		C0118FEC16E3EDA400D8C438 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		C0118FEF16E4A32F00D8C438 /* BufferView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BufferView.h; sourceTree = "<group>"; };
+		C0118FF016E4A32F00D8C438 /* BufferView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BufferView.m; sourceTree = "<group>"; };
+		C0118FF216E4B73600D8C438 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		C0CB7B9516E8C366003AD931 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		C0CB7BA016E98CBB003AD931 /* AU.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AU.h; sourceTree = "<group>"; };
+		C0CB7BA116E98CBB003AD931 /* AU.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AU.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,6 +54,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C0CB7B9616E8C366003AD931 /* AudioToolbox.framework in Frameworks */,
+				C0118FF316E4B73600D8C438 /* CoreMedia.framework in Frameworks */,
+				C0118FED16E3EDA400D8C438 /* AVFoundation.framework in Frameworks */,
 				C0118FC616E3E9C800D8C438 /* UIKit.framework in Frameworks */,
 				C0118FC816E3E9C800D8C438 /* Foundation.framework in Frameworks */,
 				C0118FCA16E3E9C800D8C438 /* CoreGraphics.framework in Frameworks */,
@@ -73,6 +86,9 @@
 		C0118FC416E3E9C800D8C438 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C0CB7B9516E8C366003AD931 /* AudioToolbox.framework */,
+				C0118FF216E4B73600D8C438 /* CoreMedia.framework */,
+				C0118FEC16E3EDA400D8C438 /* AVFoundation.framework */,
 				C0118FC516E3E9C800D8C438 /* UIKit.framework */,
 				C0118FC716E3E9C800D8C438 /* Foundation.framework */,
 				C0118FC916E3E9C800D8C438 /* CoreGraphics.framework */,
@@ -83,11 +99,10 @@
 		C0118FCB16E3E9C800D8C438 /* ForceTap */ = {
 			isa = PBXGroup;
 			children = (
+				C0118FEE16E4A2DE00D8C438 /* Buffer View */,
+				C0118FE816E3EC3500D8C438 /* Audio */,
 				C0118FD416E3E9C800D8C438 /* AppDelegate.h */,
 				C0118FD516E3E9C800D8C438 /* AppDelegate.m */,
-				C0118FDD16E3E9C800D8C438 /* ViewController.h */,
-				C0118FDE16E3E9C800D8C438 /* ViewController.m */,
-				C0118FE016E3E9C800D8C438 /* ViewController.xib */,
 				C0118FCC16E3E9C800D8C438 /* Supporting Files */,
 			);
 			path = ForceTap;
@@ -105,6 +120,26 @@
 				C0118FDB16E3E9C800D8C438 /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C0118FE816E3EC3500D8C438 /* Audio */ = {
+			isa = PBXGroup;
+			children = (
+				C0CB7BA016E98CBB003AD931 /* AU.h */,
+				C0CB7BA116E98CBB003AD931 /* AU.m */,
+			);
+			name = Audio;
+			sourceTree = "<group>";
+		};
+		C0118FEE16E4A2DE00D8C438 /* Buffer View */ = {
+			isa = PBXGroup;
+			children = (
+				C0118FDD16E3E9C800D8C438 /* BufferViewController.h */,
+				C0118FDE16E3E9C800D8C438 /* BufferViewController.m */,
+				C0118FEF16E4A32F00D8C438 /* BufferView.h */,
+				C0118FF016E4A32F00D8C438 /* BufferView.m */,
+			);
+			name = "Buffer View";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -162,7 +197,6 @@
 				C0118FD816E3E9C800D8C438 /* Default.png in Resources */,
 				C0118FDA16E3E9C800D8C438 /* Default@2x.png in Resources */,
 				C0118FDC16E3E9C800D8C438 /* Default-568h@2x.png in Resources */,
-				C0118FE216E3E9C800D8C438 /* ViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -175,7 +209,9 @@
 			files = (
 				C0118FD216E3E9C800D8C438 /* main.m in Sources */,
 				C0118FD616E3E9C800D8C438 /* AppDelegate.m in Sources */,
-				C0118FDF16E3E9C800D8C438 /* ViewController.m in Sources */,
+				C0118FDF16E3E9C800D8C438 /* BufferViewController.m in Sources */,
+				C0118FF116E4A32F00D8C438 /* BufferView.m in Sources */,
+				C0CB7BA216E98CBB003AD931 /* AU.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -188,14 +224,6 @@
 				C0118FCF16E3E9C800D8C438 /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		C0118FE016E3E9C800D8C438 /* ViewController.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				C0118FE116E3E9C800D8C438 /* en */,
-			);
-			name = ViewController.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -298,6 +326,7 @@
 				C0118FE716E3E9C800D8C438 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

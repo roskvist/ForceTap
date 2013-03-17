@@ -7,18 +7,33 @@
 //
 
 #import "AppDelegate.h"
-
-#import "ViewController.h"
+#import "BufferView.h"
+#import "BufferViewController.h"
+#import "AU.h"
 
 @implementation AppDelegate
-
+@synthesize viewController  = _viewController;
+@synthesize window          = _window;
+@synthesize recordera       =_rec;
+@synthesize elapsedTime     =_elapsedTime;
+@synthesize now             =_now;
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    // Override point for customization after application launch.
-    self.viewController = [[ViewController alloc] initWithNibName:@"ViewController" bundle:nil];
-    self.window.rootViewController = self.viewController;
-    [self.window makeKeyAndVisible];
+    [application setStatusBarHidden:YES withAnimation:UIStatusBarAnimationNone];
+    
+    _window             = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    _viewController     = [[BufferViewController alloc] init];
+    _rec = [[AU alloc]init];
+    _rec.delegate  = _viewController.bufferView;
+   
+    _window.backgroundColor = [UIColor whiteColor];
+    [_window setRootViewController:_viewController];
+    [_window makeKeyAndVisible];;
+    
+    [_rec startAudioUnit];
+    
+   _now = [NSDate date];
+    
     return YES;
 }
 
@@ -32,11 +47,17 @@
 {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+   NSLog(@"applicationDidEnterBackground");
+    [_rec stopProcessingAudio];
+    [_rec cleanUp];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
+    NSLog(@"applicationWillEnterForeground");
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+    
+    [_rec startAudioUnit];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
@@ -47,6 +68,16 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+
 }
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+    
+
+     NSLog(@"touchesBegan");
+    [_rec stopProcessingAudio];
+ 
+}
+-(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
+    }
 
 @end
