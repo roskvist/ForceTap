@@ -135,8 +135,10 @@ OSStatus recordingCallback(void *inRefCon,
     bufferList.mNumberBuffers = 1;
     bufferList.mBuffers[0] = buffer;
     
-    AudioUnitRender(audioUnit, ioActionFlags, inTimeStamp, inBusNumber, inNumberFrames,&bufferList);
-    
+    status = AudioUnitRender(audioUnit, ioActionFlags, inTimeStamp, inBusNumber, inNumberFrames,&bufferList);
+    if(status != noErr) {
+        return status;
+    }
     SInt16 *audioFrame = (SInt16*)buffer.mData;
     
     
@@ -178,7 +180,11 @@ OSStatus recordingCallback(void *inRefCon,
     return noErr;
     
 }
-
-
-
+-(void)checkStatus:(int)statusCode:(char*)file:(int)line
+{
+    if (statusCode) {
+        printf("Error Code responded %d in file %s on line %d\n", statusCode, file, line);
+        exit(-1);
+    }
+}
 @end
