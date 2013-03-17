@@ -9,7 +9,7 @@
 #import "AppDelegate.h"
 #import "BufferView.h"
 #import "BufferViewController.h"
-#import "AU.h"
+#import "AUHelper.h"
 
 @implementation AppDelegate
 @synthesize viewController  = _viewController;
@@ -23,7 +23,7 @@
     
     _window             = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     _viewController     = [[BufferViewController alloc] init];
-    _rec = [[AU alloc]init];
+    _rec = [[AUHelper alloc]init];
     _rec.delegate  = _viewController.bufferView;
    
     _window.backgroundColor = [UIColor whiteColor];

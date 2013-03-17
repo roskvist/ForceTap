@@ -7,15 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "AU.h"
+#import "AUHelper.h"
 @class BufferViewController;
-@class AU;
+@class AUHelper;
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 
 @property (strong, nonatomic) BufferViewController *viewController;
-@property (strong, nonatomic) AU *recordera;
+@property (strong, nonatomic) AUHelper *recordera;
 @property NSTimeInterval elapsedTime;
 @property NSDate *now;
 @end

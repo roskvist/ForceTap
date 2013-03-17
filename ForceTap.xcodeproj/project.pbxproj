@@ -21,7 +21,7 @@
 		C0118FF116E4A32F00D8C438 /* BufferView.m in Sources */ = {isa = PBXBuildFile; fileRef = C0118FF016E4A32F00D8C438 /* BufferView.m */; };
 		C0118FF316E4B73600D8C438 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0118FF216E4B73600D8C438 /* CoreMedia.framework */; };
 		C0CB7B9616E8C366003AD931 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0CB7B9516E8C366003AD931 /* AudioToolbox.framework */; };
-		C0CB7BA216E98CBB003AD931 /* AU.m in Sources */ = {isa = PBXBuildFile; fileRef = C0CB7BA116E98CBB003AD931 /* AU.m */; };
+		C0CB7BA216E98CBB003AD931 /* AUHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = C0CB7BA116E98CBB003AD931 /* AUHelper.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,8 +45,8 @@
 		C0118FF016E4A32F00D8C438 /* BufferView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BufferView.m; sourceTree = "<group>"; };
 		C0118FF216E4B73600D8C438 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		C0CB7B9516E8C366003AD931 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
-		C0CB7BA016E98CBB003AD931 /* AU.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AU.h; sourceTree = "<group>"; };
-		C0CB7BA116E98CBB003AD931 /* AU.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AU.m; sourceTree = "<group>"; };
+		C0CB7BA016E98CBB003AD931 /* AUHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AUHelper.h; sourceTree = "<group>"; };
+		C0CB7BA116E98CBB003AD931 /* AUHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AUHelper.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,8 +125,8 @@
 		C0118FE816E3EC3500D8C438 /* Audio */ = {
 			isa = PBXGroup;
 			children = (
-				C0CB7BA016E98CBB003AD931 /* AU.h */,
-				C0CB7BA116E98CBB003AD931 /* AU.m */,
+				C0CB7BA016E98CBB003AD931 /* AUHelper.h */,
+				C0CB7BA116E98CBB003AD931 /* AUHelper.m */,
 			);
 			name = Audio;
 			sourceTree = "<group>";
@@ -211,7 +211,7 @@
 				C0118FD616E3E9C800D8C438 /* AppDelegate.m in Sources */,
 				C0118FDF16E3E9C800D8C438 /* BufferViewController.m in Sources */,
 				C0118FF116E4A32F00D8C438 /* BufferView.m in Sources */,
-				C0CB7BA216E98CBB003AD931 /* AU.m in Sources */,
+				C0CB7BA216E98CBB003AD931 /* AUHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

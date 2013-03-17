@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "AU.h"
+#import "AUHelper.h"
 
 @interface BufferView : UIView<AUDelegate>
 @property SInt16* currBuffer;

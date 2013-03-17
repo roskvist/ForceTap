@@ -6,10 +6,10 @@
 //  Copyright (c) 2013 Kasper Andersen. All rights reserved.
 //
 
-#import "AU.h"
+#import "AUHelper.h"
 #define kInputBus 1
 
-@implementation AU
+@implementation AUHelper
 @synthesize conversionBuffer;
 OSStatus status;
 AudioComponentInstance audioUnit;
@@ -23,7 +23,6 @@ float *convertedSampleBuffer = NULL;
     return self;
 }
 -(void)initialiseAudio{
-    conversionBuffer = (void *) malloc(256* sizeof(SInt16));
     // Describe audio component
     AudioComponentDescription desc;
     desc.componentType = kAudioUnitType_Output;
@@ -123,7 +122,7 @@ OSStatus recordingCallback(void *inRefCon,
     /**
      This is the reference to the object who owns the callback.
      */
-    AU *au = (__bridge AU*) inRefCon;
+    AUHelper *au = (__bridge AUHelper*) inRefCon;
     
     AudioBuffer buffer;
     buffer.mDataByteSize = inNumberFrames * sizeof(SInt16); // sample size
@@ -180,11 +179,5 @@ OSStatus recordingCallback(void *inRefCon,
     return noErr;
     
 }
--(void)checkStatus:(int)statusCode:(char*)file:(int)line
-{
-    if (statusCode) {
-        printf("Error Code responded %d in file %s on line %d\n", statusCode, file, line);
-        exit(-1);
-    }
-}
+
 @end

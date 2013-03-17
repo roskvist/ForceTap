@@ -12,7 +12,7 @@
 @protocol AUDelegate;
 
 
-@interface AU : NSObject
+@interface AUHelper : NSObject
 @property (nonatomic, assign) id<AUDelegate> delegate;
 @property SInt16 *conversionBuffer;	
 
