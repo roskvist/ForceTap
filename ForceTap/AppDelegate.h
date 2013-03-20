@@ -15,7 +15,7 @@
 @property (strong, nonatomic) UIWindow *window;
 
 @property (strong, nonatomic) BufferViewController *viewController;
-@property (strong, nonatomic) AUHelper *recordera;
+@property (strong, nonatomic) AUHelper *auHelper;
 @property NSTimeInterval elapsedTime;
 @property NSDate *now;
 @end

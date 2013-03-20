@@ -14,7 +14,7 @@
 @implementation AppDelegate
 @synthesize viewController  = _viewController;
 @synthesize window          = _window;
-@synthesize recordera       =_rec;
+@synthesize auHelper      =_auHelper;
 @synthesize elapsedTime     =_elapsedTime;
 @synthesize now             =_now;
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -23,14 +23,14 @@
     
     _window             = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     _viewController     = [[BufferViewController alloc] init];
-    _rec = [[AUHelper alloc]init];
-    _rec.delegate  = _viewController.bufferView;
+    _auHelper = [[AUHelper alloc]init];
+    _auHelper.delegate  = _viewController.bufferView;
    
     _window.backgroundColor = [UIColor whiteColor];
     [_window setRootViewController:_viewController];
     [_window makeKeyAndVisible];;
     
-    [_rec startAudioUnit];
+    [_auHelper startAudioUnit];
     
    _now = [NSDate date];
     
@@ -48,8 +48,8 @@
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
    NSLog(@"applicationDidEnterBackground");
-    [_rec stopProcessingAudio];
-    [_rec cleanUp];
+    [_auHelper stopProcessingAudio];
+    [_auHelper cleanUp];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
@@ -57,7 +57,7 @@
     NSLog(@"applicationWillEnterForeground");
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
     
-    [_rec startAudioUnit];
+    [_auHelper startAudioUnit];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
@@ -73,8 +73,9 @@
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
     
 
-     NSLog(@"touchesBegan");
-    [_rec stopProcessingAudio];
+    // NSLog(@"touchesBegan");
+    [_auHelper touchEvent];
+    [_auHelper stopProcessingAudio];
  
 }
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
