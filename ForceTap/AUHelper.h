@@ -9,15 +9,21 @@
 #import <Foundation/Foundation.h>
 #import <AudioToolbox/AudioToolbox.h>
 #import "BufferViewController.h"
+#include <Accelerate/Accelerate.h>
+#include <AudioToolbox/AudioFile.h>
 @protocol AUDelegate;
 @interface AUHelper : NSObject
-@property (nonatomic, assign) id<AUDelegate> delegate;
-@property AudioBuffer       destBuffer;
-@property NSMutableArray    *destArr;
+@property (nonatomic, assign) id<AUDelegate>    delegate;
+@property float                                 loudestFrameValue;
+@property int                                   loudestFrameNr;
+@property bool                                  touchHasOccured;
+@property bool                                  isReady;
+@property int                                   counter;
+@property float                                 globalFrameLength;
+@property OSStatus                              status;
+@property AudioComponentInstance                audioUnit;
+@property AudioStreamBasicDescription           audioFormat;
 
-
-@property bool touchHasOccured;
-@property int counter;
 
 -(void)startAudioUnit;
 -(void) stopProcessingAudio;
@@ -25,11 +31,15 @@
 -(void)processBuffer: (AudioBufferList*) audioBufferList;
 -(void)drawSavedBuffer;
 -(void)touchEvent;
+-(void)initFingerWav;
 @end
 
 @protocol AUDelegate <NSObject>
 @required
 -(void)didReceiveAudioFrame:(SInt16*)aFrame withLength:(int)aLength;
--(void)drawButtons;
--(void)initData:(SInt16*)aFrame withLength:(int)aLength andCounter:(int)counter;
+-(void)initData:(SInt16*)aFrame withLength:(int)aLength andCounter:(int)counter frameNr:(int)loudFrame
+       loudestValue:(float)loudVal;
+-(void)showLoudestFrame;
+-(void)touchEvent;
+-(float)calcTotalSum;
 @end

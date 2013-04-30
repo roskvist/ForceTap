@@ -20,10 +20,13 @@
 @synthesize sum         = _sum;
 @synthesize frameSum    = _frameSum;
 
-SInt16 *mdataArr[200];
+
+SInt16 *mdataArr[5];
+float sumArray[5];
 int globalLength;
 int globalCount;
-
+int loudFrameNr;
+float loudestValue;
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -40,25 +43,26 @@ int globalCount;
         
         _sum = [[UILabel alloc]init];
         [_sum setBackgroundColor:[UIColor clearColor]];
-        _sum.frame = CGRectMake(220.0, 380, 160.0, 40.0);
+        _sum.frame = CGRectMake(220.0, 200, 160.0, 40.0);
         _sum.transform = CGAffineTransformMakeRotation(M_PI / 2);
         [_sum setTextColor:[UIColor whiteColor]];
         [_sum setText:@"Frame sum: "];
         [self addSubview:_sum];
+        
+        [_frameNumber setHidden:TRUE];
+        [_sum setHidden:TRUE];
     }
     return self;
 }
 // Only override drawRect: if you perform custom drawing.
 // An empty implementation adversely affects performance during animation.
 -(void)drawRect:(CGRect)rect{
- 
-  
     // Drawing code
    _ctx = UIGraphicsGetCurrentContext();
     CGContextSetFillColorWithColor(_ctx, [[UIColor blackColor] CGColor]);
     CGContextFillRect(_ctx, rect);
     
-    CGContextRotateCTM(_ctx, 90/ 180.0 * M_PI);
+    CGContextRotateCTM(_ctx, 90 / 180.0 * M_PI);
     CGContextTranslateCTM(_ctx, 0.0f, -320.0f);
     
     // draw baseline
@@ -85,27 +89,20 @@ int globalCount;
  
     for (int i = 0; i < _currLength; i++)
     {
-
-               CGContextAddLineToPoint(_ctx, leftX + (i + 1) * stepX, centerY + (float)(_currBuffer[i]) / 128.0f);
-        //NSLog(@"buffs %f",(float)(_currBuffer[i]));
+        CGContextAddLineToPoint(_ctx, leftX + (i + 1) * stepX, centerY + (float)(_currBuffer[i]) / 128.0f);
+        
     }
     
     CGContextAddLineToPoint(_ctx, leftX + (_currLength + 1) * stepX, centerY);
     CGContextAddLineToPoint(_ctx, 480.0f, centerY);
     
-    CGContextStrokePath(_ctx);
-   /*
-    CGContextSetStrokeColorWithColor(_ctx, [[UIColor blueColor] CGColor]);
     
-    float startY    = 320.0f;
-    float endY      = 0.0f;
-    CGContextMoveToPoint(_ctx, _startX, startY);
-    CGContextAddLineToPoint(_ctx, _startX, endY);
+    
     CGContextStrokePath(_ctx);
-    */
 }
 
 - (void)didReceiveAudioFrame:(SInt16*)aFrame withLength:(int)aLength{
+    
     dispatch_queue_t main_queue = dispatch_get_main_queue();
     dispatch_async(main_queue, ^{
         _currLength = aLength;
@@ -138,55 +135,84 @@ int globalCount;
 }
 -(void)showNextFrame{
     _frameCount++;
-    
     if(_frameCount > globalCount){
         _frameCount = 0;
     }
-    [self didReceiveAudioFrame:mdataArr[_frameCount]withLength:globalLength];
-    [self updateSumLabel:mdataArr[_frameCount]];
-    [self updateFrameNumberLabel];
+    SInt16 *aFrame = mdataArr[_frameCount];
+    [self didReceiveAudioFrame:aFrame withLength:globalLength];
+    [self updateSumLabel:[self calcSum:aFrame]];
+    [self updateFrameNumberLabel:_frameCount];
+    
+    
+   
 }
 -(void)showPrevFrame{
     
-    _frameCount = _frameCount-1;
+    
     if(_frameCount<0){
         _frameCount = globalCount;
-        [self updateFrameNumberLabel];
-        [self updateSumLabel:mdataArr[_frameCount]];
-        [self didReceiveAudioFrame:mdataArr[_frameCount]withLength:globalLength];     
     }
-    else {
-        NSLog(@"frameCount = %i",_frameCount);
-        [self didReceiveAudioFrame:mdataArr[_frameCount]withLength:globalLength];
-        [self updateSumLabel:mdataArr[_frameCount]];
-        [self updateFrameNumberLabel];
-    }
+    SInt16 *aFrame = mdataArr[_frameCount];
+    [self didReceiveAudioFrame:aFrame withLength:globalLength];
+    [self updateSumLabel:[self calcSum:aFrame]];
+    [self updateFrameNumberLabel:_frameCount];
+    _frameCount = _frameCount-1;
 }
--(void)initData:(SInt16*)aFrame withLength:(int)aLength andCounter:(int)counter{
+-(void)initData:(SInt16*)aFrame withLength:(int)aLength andCounter:(int)counter frameNr:(int)loudFrame
+loudestValue:(float)loudVal{
 
     mdataArr[counter] = aFrame;
+    
+    //sumArray[counter] = sum;
+    loudFrameNr = loudFrame;
+    loudestValue = loudVal;
     globalLength = aLength;
-    globalCount = counter;
-    [self updateFrameNumberLabel];
-  //  [self updateSumLabel:aFrame];
+    globalCount = counter-1;
+    [self updateFrameNumberLabel:counter];
+    [self updateSumLabel:counter];
+    
+    [_frameNumber setHidden:FALSE];
+    [_sum setHidden:FALSE];
+    _frameCount = globalCount;
+    
    
 }
--(void)updateFrameNumberLabel{
-    NSString * s = [NSString stringWithFormat:@"Frame number: %i",_frameCount+1];
+-(void)updateFrameNumberLabel:(int)count{
+    NSString * s = [NSString stringWithFormat:@"Frame number: %i",count];
    
     [_frameNumber setText:s];
 }
--(void)updateSumLabel:(SInt16*)aFrame{
+-(void)updateSumLabel:(float)val{
+        
+    NSString * s = [NSString stringWithFormat:@"Frame sum: %.2f",val];
     
+    [_sum setText:s];
+}
+-(void)showLoudestFrame{
+
+    SInt16 *audioFrame = mdataArr[loudFrameNr];
+
+    [self updateSumLabel:[self calcSum:audioFrame]];
+    [self updateFrameNumberLabel:loudFrameNr];
+    [self didReceiveAudioFrame:audioFrame withLength:globalLength];
+}
+-(float)calcSum:(SInt16*)aFrame{
     float sum = 0.0;
     
     for(int i = 0;i<globalLength;i++){
         
         sum += (fabsf((float) aFrame[i])/128.0f);
     }
+    return sum;
+}
+-(void)touchEvent{
     
-    NSString * s = [NSString stringWithFormat:@"Frame sum: %.2f",sum];
-    
-    [_sum setText:s];
+    [self drawButtons];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"5 frames sumarized"
+                                                    message:[NSString stringWithFormat:@"%f",loudestValue]
+                                                   delegate:nil
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+    [alert show];
 }
 @end

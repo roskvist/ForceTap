@@ -9,16 +9,22 @@
 #import <UIKit/UIKit.h>
 #import "AUHelper.h"
 
-@interface BufferView : UIView<AUDelegate>
-@property SInt16* currBuffer;
-@property CGContextRef ctx;
-@property  int currLength;
-@property  float startX;
-@property int frameCount;
-@property UILabel *frameNumber;
-@property UILabel *sum;
-@property float frameSum;
+@interface  BufferView:  UIView<AUDelegate>
+@property   SInt16*      currBuffer;
+@property   CGContextRef ctx;
+@property   int          currLength;
+@property   float        startX;
+@property   int          frameCount;
+@property   UILabel     *frameNumber;
+@property   UILabel     *sum;
+@property   float        frameSum;
+
+
+
 -(void)didReceiveAudioFrame:(SInt16*)aFrame withLength:(int)aLength;
--(void)drawButtons;
--(void)initData:(SInt16*)aFrame withLength:(int)aLength andCounter:(int)counter;
+-(void)initData:(SInt16*)aFrame withLength:(int)aLength andCounter:(int)counter frameNr:(int)loudFrame
+   loudestValue:(float)loudVal;
+-(void)showLoudestFrame;
+-(void)touchEvent;
+
 @end

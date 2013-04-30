@@ -12,27 +12,28 @@
 #import "AUHelper.h"
 
 @implementation AppDelegate
-@synthesize viewController  = _viewController;
-@synthesize window          = _window;
-@synthesize auHelper      =_auHelper;
-@synthesize elapsedTime     =_elapsedTime;
-@synthesize now             =_now;
+@synthesize bufferViewController  = _bufferViewController;
+@synthesize window                = _window;
+@synthesize auHelper              = _auHelper;
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     [application setStatusBarHidden:YES withAnimation:UIStatusBarAnimationNone];
-    
-    _window             = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    _viewController     = [[BufferViewController alloc] init];
     _auHelper = [[AUHelper alloc]init];
-    _auHelper.delegate  = _viewController.bufferView;
-   
+    _window                 = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     _window.backgroundColor = [UIColor whiteColor];
-    [_window setRootViewController:_viewController];
+    
+    _bufferViewController   = [[BufferViewController alloc] init];
+    _auHelper.delegate      = _bufferViewController.bufferView;
+    
+    
+    [_window setRootViewController:_bufferViewController];
+   
+    //[_window setRootViewController:_levelViewController];
     [_window makeKeyAndVisible];;
     
-    [_auHelper startAudioUnit];
     
-   _now = [NSDate date];
+    [_auHelper startAudioUnit];
     
     return YES;
 }

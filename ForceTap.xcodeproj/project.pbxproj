@@ -20,6 +20,8 @@
 		C0118FED16E3EDA400D8C438 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0118FEC16E3EDA400D8C438 /* AVFoundation.framework */; };
 		C0118FF116E4A32F00D8C438 /* BufferView.m in Sources */ = {isa = PBXBuildFile; fileRef = C0118FF016E4A32F00D8C438 /* BufferView.m */; };
 		C0118FF316E4B73600D8C438 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0118FF216E4B73600D8C438 /* CoreMedia.framework */; };
+		C0231BA31724672F00754072 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0231BA21724672F00754072 /* Accelerate.framework */; };
+		C042110217295C7700CB4CAE /* fingerisolated.wav in Resources */ = {isa = PBXBuildFile; fileRef = C042110117295C7700CB4CAE /* fingerisolated.wav */; };
 		C0CB7B9616E8C366003AD931 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0CB7B9516E8C366003AD931 /* AudioToolbox.framework */; };
 		C0CB7BA216E98CBB003AD931 /* AUHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = C0CB7BA116E98CBB003AD931 /* AUHelper.m */; };
 /* End PBXBuildFile section */
@@ -44,6 +46,8 @@
 		C0118FEF16E4A32F00D8C438 /* BufferView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BufferView.h; sourceTree = "<group>"; };
 		C0118FF016E4A32F00D8C438 /* BufferView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BufferView.m; sourceTree = "<group>"; };
 		C0118FF216E4B73600D8C438 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		C0231BA21724672F00754072 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		C042110117295C7700CB4CAE /* fingerisolated.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = fingerisolated.wav; path = ../fingerisolated.wav; sourceTree = "<group>"; };
 		C0CB7B9516E8C366003AD931 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		C0CB7BA016E98CBB003AD931 /* AUHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AUHelper.h; sourceTree = "<group>"; };
 		C0CB7BA116E98CBB003AD931 /* AUHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AUHelper.m; sourceTree = "<group>"; };
@@ -54,6 +58,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C0231BA31724672F00754072 /* Accelerate.framework in Frameworks */,
 				C0CB7B9616E8C366003AD931 /* AudioToolbox.framework in Frameworks */,
 				C0118FF316E4B73600D8C438 /* CoreMedia.framework in Frameworks */,
 				C0118FED16E3EDA400D8C438 /* AVFoundation.framework in Frameworks */,
@@ -86,6 +91,7 @@
 		C0118FC416E3E9C800D8C438 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C0231BA21724672F00754072 /* Accelerate.framework */,
 				C0CB7B9516E8C366003AD931 /* AudioToolbox.framework */,
 				C0118FF216E4B73600D8C438 /* CoreMedia.framework */,
 				C0118FEC16E3EDA400D8C438 /* AVFoundation.framework */,
@@ -111,6 +117,7 @@
 		C0118FCC16E3E9C800D8C438 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				C042110117295C7700CB4CAE /* fingerisolated.wav */,
 				C0118FCD16E3E9C800D8C438 /* ForceTap-Info.plist */,
 				C0118FCE16E3E9C800D8C438 /* InfoPlist.strings */,
 				C0118FD116E3E9C800D8C438 /* main.m */,
@@ -197,6 +204,7 @@
 				C0118FD816E3E9C800D8C438 /* Default.png in Resources */,
 				C0118FDA16E3E9C800D8C438 /* Default@2x.png in Resources */,
 				C0118FDC16E3E9C800D8C438 /* Default-568h@2x.png in Resources */,
+				C042110217295C7700CB4CAE /* fingerisolated.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -241,7 +249,8 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Kasper Andersen (XZM5Q4Y58B)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Kasper Andersen (XZM5Q4Y58B)";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -256,6 +265,8 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "3C02333F-4870-4782-9862-4DFB2C24271D";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "3C02333F-4870-4782-9862-4DFB2C24271D";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -272,7 +283,8 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Kasper Andersen (XZM5Q4Y58B)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Kasper Andersen (XZM5Q4Y58B)";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -280,6 +292,8 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PROVISIONING_PROFILE = "3C02333F-4870-4782-9862-4DFB2C24271D";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "3C02333F-4870-4782-9862-4DFB2C24271D";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
